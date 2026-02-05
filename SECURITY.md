@@ -41,9 +41,11 @@ ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
 
 ## Recommended Production Enhancements
 
-1. **Rate Limiting**
-   - Implement rate limiting on authentication endpoints to prevent brute force attacks
-   - Consider using packages like `express-rate-limit`
+1. **Rate Limiting** ✅ IMPLEMENTED
+   - Rate limiting is implemented on authentication endpoints to prevent brute force attacks
+   - Current configuration: 5 authentication attempts per 15 minutes per IP
+   - General API rate limit: 100 requests per 15 minutes per IP
+   - Uses `express-rate-limit` package
 
 2. **HTTPS Only**
    - Always use HTTPS in production to encrypt data in transit
