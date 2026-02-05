@@ -24,8 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check if user is logged in
     const savedUser = localStorage.getItem('demoUser');
     if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        showDashboard();
+        try {
+            const parsed = JSON.parse(savedUser);
+            if (parsed && parsed.email) {
+                currentUser = parsed;
+                showDashboard();
+            }
+        } catch (e) {
+            // Invalid data in localStorage, clear it
+            localStorage.removeItem('demoUser');
+        }
     }
 
     // Event listeners
@@ -228,8 +236,8 @@ async function handleBuy(e) {
     const amount = parseFloat(document.getElementById('buyAmount').value);
     const price = parseFloat(document.getElementById('buyPrice').value);
     
-    if (amount <= 0 || price <= 0) {
-        showTradeMessage('Amount and price must be greater than 0', 'error');
+    if (!isFinite(amount) || !isFinite(price) || amount <= 0 || price <= 0) {
+        showTradeMessage('Amount and price must be valid positive numbers', 'error');
         return;
     }
 
@@ -270,8 +278,8 @@ async function handleSell(e) {
     const amount = parseFloat(document.getElementById('sellAmount').value);
     const price = parseFloat(document.getElementById('sellPrice').value);
     
-    if (amount <= 0 || price <= 0) {
-        showTradeMessage('Amount and price must be greater than 0', 'error');
+    if (!isFinite(amount) || !isFinite(price) || amount <= 0 || price <= 0) {
+        showTradeMessage('Amount and price must be valid positive numbers', 'error');
         return;
     }
 

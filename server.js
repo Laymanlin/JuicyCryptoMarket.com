@@ -12,6 +12,8 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // In-memory storage for demo accounts
+// NOTE: This is intentional for demo/testing purposes. Data will be lost on server restart.
+// For production, replace with a proper database (MongoDB, PostgreSQL, etc.)
 const demoAccounts = new Map();
 const DEMO_INITIAL_BALANCE = 1000000000; // $1 billion
 
