@@ -2,7 +2,7 @@
   "name": "juicy-crypto-market",
   "version": "1.0.0",
   "description": "A cryptocurrency broker platform for trading digital assets",
-  "main": "src/app.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
