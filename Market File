@@ -1,2 +1,39 @@
-Email 
-Password 
+# Market Configuration File
+# This file contains configuration for cryptocurrency market data sources
+
+## User Authentication Fields
+Email: user@example.com
+Password: ********
+
+## Supported Markets
+- Bitcoin (BTC)
+- Ethereum (ETH)
+- Tether (USDT)
+- BNB (BNB)
+- Cardano (ADA)
+- Solana (SOL)
+- XRP (XRP)
+- Polkadot (DOT)
+
+## Market Data Sources
+Primary: CoinMarketCap API
+Secondary: Binance API
+Fallback: CoinGecko API
+
+## Trading Pairs
+BTC/USD
+ETH/USD
+BNB/USD
+USDT/USD
+
+## Price Update Interval
+Real-time: WebSocket connection
+Fallback: 5 seconds polling
+
+## Market Hours
+24/7 Trading Available
+
+## Fee Structure
+Trading Fee: 0.1%
+Withdrawal Fee: Variable by cryptocurrency
+Deposit Fee: Free

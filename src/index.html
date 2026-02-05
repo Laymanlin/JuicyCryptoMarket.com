@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuicyCryptoMarket - Your Crypto Trading Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>🍊 JuicyCryptoMarket</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="#markets">Markets</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <button class="btn-login" id="loginBtn">Login</button>
+                    <button class="btn-signup" id="signupBtn">Sign Up</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2>Trade Cryptocurrencies with Confidence</h2>
+                <p>Buy, sell, and manage your crypto portfolio with real-time market data</p>
+                <button class="btn-primary" id="getStartedBtn">Get Started</button>
+            </div>
+        </section>
+
+        <!-- Market Overview Section -->
+        <section id="markets" class="markets">
+            <div class="container">
+                <h2>Live Market Prices</h2>
+                <div class="market-grid" id="marketGrid">
+                    <!-- Market data will be loaded here -->
+                    <div class="market-card">
+                        <div class="crypto-icon">₿</div>
+                        <h3>Bitcoin</h3>
+                        <p class="price">$45,230.50</p>
+                        <p class="change positive">+2.5%</p>
+                    </div>
+                    <div class="market-card">
+                        <div class="crypto-icon">Ξ</div>
+                        <h3>Ethereum</h3>
+                        <p class="price">$2,890.75</p>
+                        <p class="change positive">+1.8%</p>
+                    </div>
+                    <div class="market-card">
+                        <div class="crypto-icon">₮</div>
+                        <h3>Tether</h3>
+                        <p class="price">$1.00</p>
+                        <p class="change neutral">0.0%</p>
+                    </div>
+                    <div class="market-card">
+                        <div class="crypto-icon">B</div>
+                        <h3>BNB</h3>
+                        <p class="price">$325.40</p>
+                        <p class="change negative">-0.5%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose JuicyCryptoMarket?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="icon">🔐</span>
+                        <h3>Secure Trading</h3>
+                        <p>Bank-level security with 2FA and cold storage</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">⚡</span>
+                        <h3>Fast Transactions</h3>
+                        <p>Lightning-fast order execution</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">📊</span>
+                        <h3>Real-time Data</h3>
+                        <p>Live market prices and charts</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="icon">💰</span>
+                        <h3>Low Fees</h3>
+                        <p>Competitive trading fees</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div id="signupModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" required placeholder="Create a password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required placeholder="Confirm your password">
+                    </div>
+                    <button type="submit" class="btn-primary">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 JuicyCryptoMarket. All rights reserved.</p>
+            <p>⚠️ Cryptocurrency trading involves risk. Trade responsibly.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
