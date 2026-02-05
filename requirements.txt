@@ -1,0 +1,13 @@
+# No external dependencies required for the basic implementation
+# Standard library only:
+# - time
+# - random
+# - datetime
+# - functools
+# - heapq
+# - typing
+
+# For production deployment, consider:
+# redis>=4.0.0  # For caching
+# aiohttp>=3.8.0  # For async HTTP requests
+# asyncio  # Built-in, for async operations
