@@ -191,6 +191,40 @@ npm run build
 - **Testing**: Jest, Supertest
 - **Security**: CORS, session isolation
 
+## Security Considerations
+
+### For Production Deployment
+
+Before deploying to production, consider these security enhancements:
+
+1. **CSRF Protection**: Add CSRF token validation for state-changing requests
+   ```bash
+   npm install csurf
+   ```
+
+2. **Environment Variables**: Set secure session secret
+   ```bash
+   export SESSION_SECRET="your-random-secret-here"
+   export NODE_ENV="production"
+   ```
+
+3. **HTTPS**: Enable secure cookies by setting `NODE_ENV=production`
+
+4. **Rate Limiting**: Add rate limiting to prevent abuse
+   ```bash
+   npm install express-rate-limit
+   ```
+
+5. **Input Validation**: Add comprehensive input validation for all endpoints
+
+### Current Security Features
+
+- Demo accounts isolated from real data
+- Session management with httpOnly cookies
+- Demo accounts cannot execute real transactions
+- Session expiration after 24 hours
+- No sensitive data exposure in demo mode
+
 ## Future Enhancements
 - Advanced trading tools and analytics.
 - Support for multiple languages.
