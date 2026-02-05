@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - JuicyCryptoMarket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍊 JuicyCryptoMarket.com</h1>
+            <p class="subtitle">Login to your account</p>
+        </header>
+
+        <main>
+            <div class="auth-box">
+                <h2>Login</h2>
+                
+                <div id="message" class="message"></div>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="your@email.com"
+                            autocomplete="email"
+                        >
+                        <span class="error" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required 
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                        >
+                        <span class="error" id="passwordError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        Login
+                    </button>
+                </form>
+
+                <div class="auth-links">
+                    <p>Don't have an account? <a href="register.html">Register here</a></p>
+                    <p><a href="index.html">Back to Home</a></p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 JuicyCryptoMarket. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

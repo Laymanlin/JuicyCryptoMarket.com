@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - JuicyCryptoMarket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍊 JuicyCryptoMarket.com</h1>
+            <p class="subtitle">Create your account</p>
+        </header>
+
+        <main>
+            <div class="auth-box">
+                <h2>Register</h2>
+                
+                <div id="message" class="message"></div>
+                
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="your@email.com"
+                            autocomplete="email"
+                        >
+                        <span class="error" id="emailError"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            required 
+                            placeholder="At least 6 characters"
+                            autocomplete="new-password"
+                        >
+                        <span class="error" id="passwordError"></span>
+                        <div class="password-strength" id="passwordStrength"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            required 
+                            placeholder="Re-enter password"
+                            autocomplete="new-password"
+                        >
+                        <span class="error" id="confirmPasswordError"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        Register
+                    </button>
+                </form>
+
+                <div class="auth-links">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                    <p><a href="index.html">Back to Home</a></p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 JuicyCryptoMarket. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="register.js"></script>
+</body>
+</html>

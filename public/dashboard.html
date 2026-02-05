@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JuicyCryptoMarket</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍊 JuicyCryptoMarket.com</h1>
+            <p class="subtitle">Your Dashboard</p>
+        </header>
+
+        <main>
+            <div class="dashboard-box">
+                <div class="dashboard-header">
+                    <h2>Welcome, <span id="userEmail">User</span>!</h2>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+                
+                <div id="message" class="message"></div>
+                
+                <div class="dashboard-content">
+                    <div class="info-card">
+                        <h3>🎉 Account Active</h3>
+                        <p>You are successfully logged in to JuicyCryptoMarket!</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>📊 Quick Stats</h3>
+                        <p>This is a protected page that requires authentication.</p>
+                        <p>Your JWT token is being used to verify your identity.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>🔐 Security</h3>
+                        <p>Your session is secure and your password is hashed with bcrypt.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 JuicyCryptoMarket. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
