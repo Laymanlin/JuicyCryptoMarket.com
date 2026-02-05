@@ -175,6 +175,7 @@ Response:
 - **HTTPS Ready**: Application is ready for HTTPS in production
 - **XSS Protection**: Input sanitization to prevent cross-site scripting
 - **CORS Configuration**: Controlled cross-origin resource sharing
+- **Rate Limiting**: Protection against brute force attacks (5 auth attempts per 15 minutes)
 
 ## Project Structure
 

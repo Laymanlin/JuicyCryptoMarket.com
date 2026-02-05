@@ -56,6 +56,8 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         
         if (data.success) {
             // Save token to localStorage
+            // NOTE: Using localStorage for token storage is simpler but vulnerable to XSS attacks.
+            // For production, consider using httpOnly cookies or other secure storage methods.
             localStorage.setItem('token', data.token);
             localStorage.setItem('userEmail', data.user.email);
             
