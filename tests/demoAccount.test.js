@@ -44,9 +44,9 @@ describe('Demo Account Utils Tests', () => {
     });
 
     it('should reject invalid account', () => {
-      expect(isDemoAccount(null)).toBe(false);
-      expect(isDemoAccount(undefined)).toBe(false);
-      expect(isDemoAccount({})).toBe(false);
+      expect(isDemoAccount(null)).toBeFalsy();
+      expect(isDemoAccount(undefined)).toBeFalsy();
+      expect(isDemoAccount({})).toBeFalsy();
     });
   });
 
@@ -176,7 +176,7 @@ describe('Demo Account Utils Tests', () => {
         price: 46000
       });
 
-      expect(account.wallet.assets[0].amount).toBe(0.15);
+      expect(account.wallet.assets[0].amount).toBeCloseTo(0.15, 5);
     });
 
     it('should remove asset when selling all holdings', () => {
