@@ -85,7 +85,7 @@ function updatePrices() {
     
     priceElements.forEach((element, index) => {
         // Simulate small price changes
-        const currentPrice = parseFloat(element.textContent.replace('$', '').replace(',', ''));
+        const currentPrice = parseFloat(element.textContent.replace(/\$/g, '').replace(/,/g, ''));
         const change = (Math.random() - 0.5) * 100; // Random change
         const newPrice = currentPrice + change;
         
