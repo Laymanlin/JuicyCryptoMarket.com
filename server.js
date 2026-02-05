@@ -48,15 +48,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Catch all other routes and serve index.html (for client-side routing)
-app.get('*', (req, res) => {
-    if (!req.path.startsWith('/api')) {
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    } else {
-        res.status(404).json({ success: false, message: 'API endpoint not found' });
-    }
-});
-
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
