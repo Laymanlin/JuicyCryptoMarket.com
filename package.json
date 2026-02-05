@@ -12,7 +12,13 @@
     "type": "git",
     "url": "git+https://github.com/Laymanlin/JuicyCryptoMarket.com.git"
   },
-  "keywords": ["cryptocurrency", "trading", "marketplace", "bitcoin", "ethereum"],
+  "keywords": [
+    "cryptocurrency",
+    "trading",
+    "marketplace",
+    "bitcoin",
+    "ethereum"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
@@ -26,6 +32,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
     "express-session": "^1.19.0",
     "jsonwebtoken": "^9.0.3",
     "sqlite3": "^5.1.7"

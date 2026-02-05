@@ -107,6 +107,22 @@ JuicyCryptoMarket.com/
 - **SQL Injection Prevention**: Uses parameterized queries
 - **XSS Protection**: Sanitizes HTML inputs
 - **Secure Sessions**: HTTP-only cookies with secure flag in production
+- **Rate Limiting**: Prevents brute-force attacks on authentication (5 attempts per 15 minutes)
+- **API Rate Limiting**: General API rate limiting (100 requests per 15 minutes)
+- **Environment Security**: Enforces secure secrets in production mode
+
+### Production Security Checklist
+
+Before deploying to production, ensure:
+1. Set `NODE_ENV=production`
+2. Set unique `JWT_SECRET` environment variable
+3. Set unique `SESSION_SECRET` environment variable
+4. Enable HTTPS/TLS
+5. Configure proper CORS origins
+6. Review and adjust rate limiting thresholds
+7. Consider implementing CSRF protection for session-based routes
+8. Set up proper database backups
+9. Enable logging and monitoring
 
 ## 🗄️ Database
 
