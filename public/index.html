@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuicyCryptoMarket - Demo Trading Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="page">
+        <div class="container">
+            <div class="login-box">
+                <h1>🍊 JuicyCryptoMarket</h1>
+                <h2>Demo Trading Platform</h2>
+                <p class="demo-info">Experience trading with $1 Billion in demo funds!</p>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="demo@example.com" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enter Demo Mode</button>
+                </form>
+                
+                <div id="loginError" class="error-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="page hidden">
+        <nav class="navbar">
+            <div class="nav-content">
+                <h1>🍊 JuicyCryptoMarket</h1>
+                <div class="user-info">
+                    <span id="userEmail"></span>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="balance-header">
+                    <div>
+                        <h2>Demo Account Balance</h2>
+                        <p class="balance-subtitle">Virtual funds for testing</p>
+                    </div>
+                    <button id="resetBalanceBtn" class="btn btn-warning">
+                        🔄 Reset Demo Balance
+                    </button>
+                </div>
+                <div class="balance-amount" id="balanceAmount">$0.00</div>
+                <div class="balance-note">💡 This is demo money - trade without risk!</div>
+            </div>
+
+            <!-- Trading Section -->
+            <div class="trading-section">
+                <h2>Mock Trading</h2>
+                <div class="trading-grid">
+                    <!-- Buy Section -->
+                    <div class="trade-card">
+                        <h3>Buy Cryptocurrency</h3>
+                        <form id="buyForm">
+                            <div class="form-group">
+                                <label for="buyCrypto">Cryptocurrency</label>
+                                <select id="buyCrypto" required>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                    <option value="BNB">Binance Coin (BNB)</option>
+                                    <option value="ADA">Cardano (ADA)</option>
+                                    <option value="SOL">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="buyAmount">Amount</label>
+                                <input type="number" id="buyAmount" step="0.00000001" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="buyPrice">Price per Unit ($)</label>
+                                <input type="number" id="buyPrice" step="0.01" min="0" required>
+                            </div>
+                            <button type="submit" class="btn btn-success">Buy</button>
+                        </form>
+                    </div>
+
+                    <!-- Sell Section -->
+                    <div class="trade-card">
+                        <h3>Sell Cryptocurrency</h3>
+                        <form id="sellForm">
+                            <div class="form-group">
+                                <label for="sellCrypto">Cryptocurrency</label>
+                                <select id="sellCrypto" required>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                    <option value="BNB">Binance Coin (BNB)</option>
+                                    <option value="ADA">Cardano (ADA)</option>
+                                    <option value="SOL">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="sellAmount">Amount</label>
+                                <input type="number" id="sellAmount" step="0.00000001" min="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sellPrice">Price per Unit ($)</label>
+                                <input type="number" id="sellPrice" step="0.01" min="0" required>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Sell</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="tradeMessage" class="message"></div>
+            </div>
+
+            <!-- Holdings Section -->
+            <div class="holdings-section">
+                <h2>Your Holdings</h2>
+                <div id="holdingsTable" class="holdings-table">
+                    <p class="empty-state">No holdings yet. Start trading to see your portfolio!</p>
+                </div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="transactions-section">
+                <h2>Transaction History</h2>
+                <div id="transactionsTable" class="transactions-table">
+                    <p class="empty-state">No transactions yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
