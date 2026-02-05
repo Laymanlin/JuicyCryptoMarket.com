@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - Juicy Crypto Market</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🍊 Juicy Crypto Market</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="trade.html" class="active">Trade</a></li>
+                <li><a href="profile.html" id="profileLink" style="display:none;">Profile</a></li>
+                <li><a href="#" id="logoutBtn" style="display:none;">Logout</a></li>
+                <li><a href="login.html" id="loginLink">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container trade-container">
+        <h2>Trading Platform</h2>
+        
+        <div class="auth-message" id="authMessage" style="display:none;">
+            <p>Please <a href="login.html">log in</a> to start trading</p>
+        </div>
+
+        <div class="trade-content" id="tradeContent">
+            <div class="trade-grid">
+                <!-- Market Data Section -->
+                <div class="market-section">
+                    <h3>Live Market Prices</h3>
+                    <div id="liveMarketData" class="market-list">
+                        <p class="loading">Loading market data...</p>
+                    </div>
+                </div>
+
+                <!-- Trading Section -->
+                <div class="trading-section">
+                    <div class="trade-form">
+                        <h3>Place Order</h3>
+                        <form id="orderForm">
+                            <div class="form-tabs">
+                                <button type="button" class="tab-btn active" data-type="buy">Buy</button>
+                                <button type="button" class="tab-btn" data-type="sell">Sell</button>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cryptocurrency">Cryptocurrency</label>
+                                <select id="cryptocurrency" required>
+                                    <option value="">Select cryptocurrency</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                    <option value="ripple">Ripple (XRP)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <input type="number" id="amount" step="0.00000001" min="0.00000001" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price">Price (USD)</label>
+                                <input type="number" id="price" step="0.01" min="0" required readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Total (USD): <span id="totalAmount">0.00</span></label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="orderBtn">Place Buy Order</button>
+                        </form>
+                    </div>
+
+                    <!-- Order History -->
+                    <div class="order-history">
+                        <h3>Your Orders</h3>
+                        <div id="orderHistory">
+                            <p>No orders yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Juicy Crypto Market. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/trade.js"></script>
+</body>
+</html>
