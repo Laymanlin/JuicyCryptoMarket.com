@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import API_ENDPOINTS from '../config/api';
+
+// Default balance for new user accounts
+const DEFAULT_USER_BALANCE = 10000;
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
@@ -12,7 +18,7 @@ function Login({ onLogin }) {
     setError('');
 
     try {
-      const response = await fetch('/api/demo-login', {
+      const response = await fetch(API_ENDPOINTS.demoLogin, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +43,121 @@ function Login({ onLogin }) {
 
   const handleRegularLogin = async (e) => {
     e.preventDefault();
-    setError('Regular login is not implemented yet. Please use the demo account.');
+    setLoading(true);
+    setError('');
+
+    if (!email || !password) {
+      setError('Please provide email and password');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(API_ENDPOINTS.login, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Store JWT token in localStorage
+        localStorage.setItem('authToken', data.token);
+        // Create account object compatible with existing dashboard
+        const accountData = {
+          id: data.user.id,
+          username: data.user.email.split('@')[0],
+          email: data.user.email,
+          isDemo: false,
+          wallet: {
+            balance: DEFAULT_USER_BALANCE,
+            currency: 'USD',
+            assets: []
+          }
+        };
+        onLogin(accountData);
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    if (!email || !password || !confirmPassword) {
+      setError('Please fill in all fields');
+      setLoading(false);
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long');
+      setLoading(false);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(API_ENDPOINTS.register, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Store JWT token in localStorage
+        localStorage.setItem('authToken', data.token);
+        // Create account object compatible with existing dashboard
+        const accountData = {
+          id: data.user.id,
+          username: data.user.email.split('@')[0],
+          email: data.user.email,
+          isDemo: false,
+          wallet: {
+            balance: DEFAULT_USER_BALANCE,
+            currency: 'USD',
+            assets: []
+          }
+        };
+        onLogin(accountData);
+      } else {
+        setError(data.message || 'Registration failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+      console.error('Registration error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleMode = () => {
+    setIsRegistering(!isRegistering);
+    setError('');
+    setPassword('');
+    setConfirmPassword('');
   };
 
   return (
@@ -51,7 +171,9 @@ function Login({ onLogin }) {
         <div className="error-message">{error}</div>
       )}
 
-      <form className="login-form" onSubmit={handleRegularLogin}>
+      <form className="login-form" onSubmit={isRegistering ? handleRegister : handleRegularLogin}>
+        <h2>{isRegistering ? 'Create Account' : 'Login'}</h2>
+        
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -61,6 +183,7 @@ function Login({ onLogin }) {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             disabled={loading}
+            required
           />
         </div>
 
@@ -73,16 +196,42 @@ function Login({ onLogin }) {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter your password"
             disabled={loading}
+            required
           />
         </div>
+
+        {isRegistering && (
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm your password"
+              disabled={loading}
+              required
+            />
+          </div>
+        )}
 
         <div className="login-buttons">
           <button 
             type="submit" 
             className="btn btn-primary"
-            disabled={loading || !email || !password}
+            disabled={loading || !email || !password || (isRegistering && !confirmPassword)}
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? (isRegistering ? 'Creating Account...' : 'Logging in...') : (isRegistering ? 'Register' : 'Login')}
+          </button>
+
+          <button 
+            type="button"
+            className="btn btn-secondary"
+            onClick={toggleMode}
+            disabled={loading}
+            style={{ marginTop: '10px' }}
+          >
+            {isRegistering ? 'Already have an account? Login' : 'Need an account? Register'}
           </button>
 
           <div className="divider">
@@ -95,14 +244,14 @@ function Login({ onLogin }) {
             onClick={handleDemoLogin}
             disabled={loading}
           >
-            🎮 Login as Demo Account
+            🎮 Try Demo Account
           </button>
         </div>
       </form>
 
       <div style={{ marginTop: '20px', textAlign: 'center', color: '#999', fontSize: '14px' }}>
-        <p>Try our demo account with $10,000 virtual funds!</p>
-        <p>No signup required • Risk-free trading • Full features</p>
+        <p>Demo account: $10,000 virtual funds • No signup required</p>
+        <p>Real account: Full features • Secure authentication</p>
       </div>
     </div>
   );

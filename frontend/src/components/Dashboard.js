@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import API_ENDPOINTS from '../config/api';
 
 function Dashboard({ account, onLogout }) {
   const [marketPrices, setMarketPrices] = useState({});
@@ -17,7 +18,7 @@ function Dashboard({ account, onLogout }) {
 
   const fetchMarketPrices = async () => {
     try {
-      const response = await fetch('/api/market-prices', {
+      const response = await fetch(API_ENDPOINTS.marketPrices, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -31,7 +32,7 @@ function Dashboard({ account, onLogout }) {
 
   const refreshAccount = async () => {
     try {
-      const response = await fetch('/api/account', {
+      const response = await fetch(API_ENDPOINTS.account, {
         credentials: 'include'
       });
       const data = await response.json();
@@ -50,7 +51,7 @@ function Dashboard({ account, onLogout }) {
 
     try {
       const price = marketPrices[selectedCrypto];
-      const response = await fetch('/api/trade', {
+      const response = await fetch(API_ENDPOINTS.trade, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
