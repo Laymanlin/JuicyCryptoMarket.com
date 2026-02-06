@@ -14,6 +14,42 @@ function App() {
 
   const checkSession = async () => {
     try {
+      // First check for JWT token
+      const authToken = localStorage.getItem('authToken');
+      if (authToken) {
+        // Verify JWT token
+        const jwtResponse = await fetch('/api/auth/verify', {
+          headers: {
+            'Authorization': `Bearer ${authToken}`
+          }
+        });
+        
+        if (jwtResponse.ok) {
+          const jwtData = await jwtResponse.json();
+          if (jwtData.success) {
+            // Create account object from JWT user data
+            const accountData = {
+              id: jwtData.user.id,
+              username: jwtData.user.email.split('@')[0],
+              email: jwtData.user.email,
+              isDemo: false,
+              wallet: {
+                balance: 10000, // Default balance
+                currency: 'USD',
+                assets: []
+              }
+            };
+            setAccount(accountData);
+            setLoading(false);
+            return;
+          } else {
+            // Invalid token, remove it
+            localStorage.removeItem('authToken');
+          }
+        }
+      }
+      
+      // Check for demo account session
       const response = await fetch('/api/account', {
         credentials: 'include'
       });
@@ -37,6 +73,10 @@ function App() {
 
   const handleLogout = async () => {
     try {
+      // Clear JWT token if exists
+      localStorage.removeItem('authToken');
+      
+      // Also logout from demo session if exists
       const response = await fetch('/api/logout', {
         method: 'POST',
         credentials: 'include'
@@ -44,9 +84,14 @@ function App() {
 
       if (response.ok) {
         setAccount(null);
+      } else {
+        // Even if demo logout fails, still clear account
+        setAccount(null);
       }
     } catch (error) {
       console.error('Logout failed:', error);
+      // Still clear account on error
+      setAccount(null);
     }
   };
 
