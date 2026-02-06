@@ -408,3 +408,15 @@ select:focus {
     font-size: 36px;
   }
 }
+
+/* Password Strength Indicator */
+.password-strength {
+  margin-top: 8px;
+}
+
+.strength-bar {
+  height: 4px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
