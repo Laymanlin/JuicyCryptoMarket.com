@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import API_ENDPOINTS from './config/api';
 
 function App() {
   const [account, setAccount] = useState(null);
@@ -18,7 +19,7 @@ function App() {
       const authToken = localStorage.getItem('authToken');
       if (authToken) {
         // Verify JWT token
-        const jwtResponse = await fetch('/api/auth/verify', {
+        const jwtResponse = await fetch(API_ENDPOINTS.verify, {
           headers: {
             'Authorization': `Bearer ${authToken}`
           }
@@ -50,7 +51,7 @@ function App() {
       }
       
       // Check for demo account session
-      const response = await fetch('/api/account', {
+      const response = await fetch(API_ENDPOINTS.account, {
         credentials: 'include'
       });
       
@@ -77,7 +78,7 @@ function App() {
       localStorage.removeItem('authToken');
       
       // Also logout from demo session if exists
-      const response = await fetch('/api/logout', {
+      const response = await fetch(API_ENDPOINTS.logout, {
         method: 'POST',
         credentials: 'include'
       });

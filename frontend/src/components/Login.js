@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import API_ENDPOINTS from '../config/api';
 
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
@@ -14,7 +15,7 @@ function Login({ onLogin }) {
     setError('');
 
     try {
-      const response = await fetch('/api/demo-login', {
+      const response = await fetch(API_ENDPOINTS.demoLogin, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,7 +50,7 @@ function Login({ onLogin }) {
     }
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(API_ENDPOINTS.login, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -111,7 +112,7 @@ function Login({ onLogin }) {
     }
 
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch(API_ENDPOINTS.register, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
