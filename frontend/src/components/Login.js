@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import tokenManager from '../utils/tokenManager';
 
-function Login({ onLogin }) {
+function Login({ onLogin, onSwitchToRegister }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -37,7 +38,41 @@ function Login({ onLogin }) {
 
   const handleRegularLogin = async (e) => {
     e.preventDefault();
-    setError('Regular login is not implemented yet. Please use the demo account.');
+    setLoading(true);
+    setError('');
+
+    // Validation
+    if (!email || !password) {
+      setError('Please enter email and password');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Store JWT token
+        tokenManager.setToken(data.token);
+        // Pass user data to parent with JWT flag
+        onLogin({ ...data.user, isJWT: true });
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+      console.error('Login error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -100,9 +135,26 @@ function Login({ onLogin }) {
         </div>
       </form>
 
-      <div style={{ marginTop: '20px', textAlign: 'center', color: '#999', fontSize: '14px' }}>
-        <p>Try our demo account with $10,000 virtual funds!</p>
-        <p>No signup required • Risk-free trading • Full features</p>
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <p style={{ color: '#666', fontSize: '14px' }}>
+          Don't have an account?{' '}
+          <button 
+            onClick={onSwitchToRegister}
+            style={{ 
+              background: 'none', 
+              border: 'none', 
+              color: '#4CAF50', 
+              cursor: 'pointer',
+              textDecoration: 'underline'
+            }}
+          >
+            Register here
+          </button>
+        </p>
+        <p style={{ marginTop: '10px', color: '#999', fontSize: '14px' }}>
+          Try our demo account with $10,000 virtual funds!<br/>
+          No signup required • Risk-free trading • Full features
+        </p>
       </div>
     </div>
   );
