@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import API_ENDPOINTS from '../config/api';
 
+// Default balance for new user accounts
+const DEFAULT_USER_BALANCE = 10000;
+
 function Login({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,7 +74,7 @@ function Login({ onLogin }) {
           email: data.user.email,
           isDemo: false,
           wallet: {
-            balance: 10000, // Default balance for new users
+            balance: DEFAULT_USER_BALANCE,
             currency: 'USD',
             assets: []
           }
@@ -133,7 +136,7 @@ function Login({ onLogin }) {
           email: data.user.email,
           isDemo: false,
           wallet: {
-            balance: 10000, // Default balance for new users
+            balance: DEFAULT_USER_BALANCE,
             currency: 'USD',
             assets: []
           }

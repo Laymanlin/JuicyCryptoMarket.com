@@ -4,6 +4,9 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import API_ENDPOINTS from './config/api';
 
+// Default balance for new user accounts
+const DEFAULT_USER_BALANCE = 10000;
+
 function App() {
   const [account, setAccount] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -35,7 +38,7 @@ function App() {
               email: jwtData.user.email,
               isDemo: false,
               wallet: {
-                balance: 10000, // Default balance
+                balance: DEFAULT_USER_BALANCE,
                 currency: 'USD',
                 assets: []
               }
